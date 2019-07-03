@@ -8,12 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.turing.tshirtshop.entity.Category;
-import com.turing.tshirtshop.entity.Department;
-import com.turing.tshirtshop.repository.CategoryRepository;
-import com.turing.tshirtshop.repository.DepartmentRepository;
+import com.turing.tshirtshop.entity.Order;
+import com.turing.tshirtshop.repository.OrderRepository;
 
 @RestController
 public class OrderController {
@@ -21,20 +20,29 @@ public class OrderController {
 
 
     @Autowired
-    private DepartmentRepository departmentRepository;
+    private OrderRepository orderRepository;
     
    
     private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
     
-    @GetMapping("/orders")
-    public List<Department> getdepartments() {
-    	return departmentRepository.findAll();
+    @PostMapping("/orders")
+    public void createOrder() {
     }
     
     @GetMapping("/orders/{id}")
-    public Optional<Department> getCategoryById(@PathVariable(value = "id") Long id)  {
-    	return departmentRepository.findById(id);
+    public Optional<Order> getOrderById(@PathVariable(value = "id") Long id)  {
+    	return orderRepository.findById(id);
+    }
+    
+    @GetMapping("/orders/inCustomer")
+    public List<Order> getOrderByCustomer()   {
+    	return null;
+    }
+    
+    @GetMapping("/orders/shortDetail/{orderId}")
+    public  Optional<Order> getShortDetail(@PathVariable(value = "orderId") Long orderId)   {
+    	return orderRepository.findById(orderId);
     }
      
     

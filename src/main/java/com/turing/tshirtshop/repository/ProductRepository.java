@@ -23,9 +23,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	@Query("SELECT p.attributes FROM Product p where p.id=:productId ") 
 	List<AttributeValue> findAttributes(Long productId);
 	
-	@Query("SELECT p FROM Product p join p.categories c where c.id=:categoryId ") 
-	List<Product> findByCategory(Long categoryId);
-	
 	@Query("SELECT p FROM Product p join p.categories c join c.department d where d.id=:departmentId ") 
 	List<Product> findByDepartment(Long departmentId);
+	
+	@Query("SELECT p FROM Product p join p.categories c where c.id=:categoryId ") 
+	List<Product> findByCategory(Long categoryId);
 }

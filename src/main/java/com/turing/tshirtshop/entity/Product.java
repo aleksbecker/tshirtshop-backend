@@ -15,12 +15,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
  * Product entity
  */
 @Entity
+@JsonPropertyOrder({ "product_id", "name", "description", "price", "discounted_price", "image", "image_2", "thumbnail", "display" })
 public class Product implements java.io.Serializable {
 
 	@Id
@@ -32,19 +35,23 @@ public class Product implements java.io.Serializable {
 	private String name;
 	private String description;
 	private BigDecimal price;
+	@JsonProperty("discounted_price")
 	private BigDecimal discountedPrice;
 	private String image;
 	@Column(name="image_2")
+	@JsonProperty("image_2")
 	private String image2;
 	private String thumbnail;
 	private short display;
 	
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "product_category",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 	
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "product_attribute",
             joinColumns = @JoinColumn(name = "product_id"),

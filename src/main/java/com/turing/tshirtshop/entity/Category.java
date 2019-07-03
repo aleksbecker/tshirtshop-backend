@@ -76,4 +76,10 @@ public class Category implements java.io.Serializable {
 		if ( getDepartment()!=null )return getDepartment().getId();
 		return null;
 	}
+	
+	@JsonInclude
+	public String getDepartment_name() {
+		if ( getDepartment()!=null )return getDepartment().getDescription();
+		return null;
+	}
 }

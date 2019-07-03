@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Orders entity
  */
 @Entity
-public class Orders implements java.io.Serializable {
+public class Order implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="order_id")
@@ -34,16 +34,16 @@ public class Orders implements java.io.Serializable {
 	private Integer shippingId;
 	private Integer taxId;
 
-	public Orders() {
+	public Order() {
 	}
 
-	public Orders(BigDecimal totalAmount, Date createdOn, int status) {
+	public Order(BigDecimal totalAmount, Date createdOn, int status) {
 		this.totalAmount = totalAmount;
 		this.createdOn = createdOn;
 		this.status = status;
 	}
 
-	public Orders(BigDecimal totalAmount, Date createdOn, Date shippedOn, int status, String comments,
+	public Order(BigDecimal totalAmount, Date createdOn, Date shippedOn, int status, String comments,
 			Integer customerId, String authCode, String reference, Integer shippingId, Integer taxId) {
 		this.totalAmount = totalAmount;
 		this.createdOn = createdOn;
