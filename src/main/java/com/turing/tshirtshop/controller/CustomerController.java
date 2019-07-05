@@ -3,6 +3,7 @@ package com.turing.tshirtshop.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -13,6 +14,7 @@ import com.turing.tshirtshop.repository.CustomerRepository;
 import com.turing.tshirtshop.repository.ProductRepository;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class CustomerController {
 
 	@Autowired
